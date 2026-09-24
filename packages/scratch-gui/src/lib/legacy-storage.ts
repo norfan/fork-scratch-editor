@@ -65,7 +65,14 @@ export class LegacyStorage implements GUIStorage {
     }
 
     setAssetHost (host: string): void {
-        this.assetHost = host;
+        // Offline desktop builds set window.SCRATCH_ASSET_HOST (may be an empty string for
+        // same-origin) to redirect all asset requests to locally served copies of the assets.
+        if (typeof window !== 'undefined' &&
+            typeof (window as {SCRATCH_ASSET_HOST?: unknown}).SCRATCH_ASSET_HOST === 'string') {
+            this.assetHost = (window as {SCRATCH_ASSET_HOST?: string}).SCRATCH_ASSET_HOST;
+        } else {
+            this.assetHost = host;
+        }
     }
 
     getLibraryAssetUrl (assetId: string, dataFormat: string): string {

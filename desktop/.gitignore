@@ -1,0 +1,13 @@
+# desktop build artifacts (large binaries — do not commit)
+dist/
+build/
+node_modules/
+
+# electron cache / temp
+*.log
+electron.zip
+
+# icon rasterization scratch space (run gen_icon.py to regenerate)
+icon_tmp/
+library-assets/*
+!library-assets/.gitkeep

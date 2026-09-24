@@ -1,0 +1,51 @@
+{
+  "name": "fork-scratch-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desktop (Electron) wrapper for fork-scratch-editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^30.5.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.fork.scratch.desktop",
+    "productName": "Fork Scratch",
+    "copyright": "Copyright © 2026 fork-scratch-editor",
+    "files": [
+      "main.js",
+      "preload.js",
+      "build/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "resources"
+    },
+    "extraResources": [
+      {
+        "from": "library-assets",
+        "to": "library-assets"
+      }
+    ],
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "portable": {
+      "artifactName": "ForkScratch-portable.exe"
+    },
+    "nsis": {
+      "artifactName": "ForkScratch-setup.exe",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "fork-scratch-editor"
+}
